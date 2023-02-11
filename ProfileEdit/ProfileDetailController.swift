@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import PhotosUI
 
-class ViewController: UIViewController {
+class ProfileDetailController: UIViewController {
     
     @IBOutlet weak var profilePicBackground: UIView!
     @IBOutlet weak var profilePicImageView: UIImageView!
@@ -36,29 +37,64 @@ class ViewController: UIViewController {
         positionLabel.text = position
         
     }
-
+    
+    func changeProfileImage() {
+        var phpPickerConfig = PHPickerConfiguration()
+        phpPickerConfig.filter = .images
+        phpPickerConfig.selectionLimit = 1
+        let controller = PHPickerViewController(configuration: phpPickerConfig)
+        controller.delegate = self
+        present(controller, animated: true)
+    }
+    
+    
+    
+    @IBAction func editButtonPressed(_ sender: UIButton) {
+        changeProfileImage()
+    }
+    
     
 }
 
 extension UIView {
-
+    
     func addTopRoundedCornerToView(targetView: UIView?, desiredCurve: CGFloat?) {
         let offset:CGFloat =  targetView!.frame.width/desiredCurve!
         let bounds: CGRect = targetView!.bounds
-
+        
         let rectBounds: CGRect = CGRectMake(bounds.origin.x, bounds.origin.y + bounds.size.height / 2, bounds.size.width, bounds.size.height / 2)
-
+        
         let rectPath: UIBezierPath = UIBezierPath(rect: rectBounds)
         let ovalBounds: CGRect = CGRectMake(bounds.origin.x - offset / 2, bounds.origin.y, bounds.size.width + offset, bounds.size.height)
         let ovalPath: UIBezierPath = UIBezierPath(ovalIn: ovalBounds)
         rectPath.append(ovalPath)
-
+        
         // Create the shape layer and set its path
         let maskLayer: CAShapeLayer = CAShapeLayer()
         maskLayer.frame = bounds
         maskLayer.path = rectPath.cgPath
-
+        
         // Set the newly created shape layer as the mask for the view's layer
         targetView!.layer.mask = maskLayer
+    }
+}
+
+extension ProfileDetailController: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        if !results.isEmpty {
+            let result = results.first!
+            let itemProvider = result.itemProvider
+            if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+                    guard let image = image as? UIImage else {
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self?.profilePicImageView.image = image
+                    }
+                }
+            }
+        }
+        dismiss(animated: true)
     }
 }
