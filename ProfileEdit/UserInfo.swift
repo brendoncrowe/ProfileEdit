@@ -9,9 +9,8 @@ import Foundation
 
 
 struct UserInfo {
-    let firstName: String
-    let lastName: String
-    let age: Int
-    let birthday: Date
-    let position: String
+    let name: String
+    let phoneNumber: Int
+    let email: String
+    let website: String
 }

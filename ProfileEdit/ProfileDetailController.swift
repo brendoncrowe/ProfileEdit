@@ -16,6 +16,11 @@ class ProfileDetailController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var editProfilePicButton: UIButton!
+    @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var websiteLabel: UILabel!
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +58,24 @@ class ProfileDetailController: UIViewController {
         changeProfileImage()
     }
     
+    
+    @IBAction func dimissView(_ segue: UIStoryboardSegue) {
+        dismiss(animated: true)
+    }
+    
+    
+    @IBAction func editButtonTapped(_ sender: UIButton) {
+        // Create your child view controller
+        lazy var detailController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileEditController")
+        if let sheet = detailController.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.largestUndimmedDetentIdentifier = .medium
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
+            sheet.prefersEdgeAttachedInCompactHeight = true
+            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+        }
+        present(detailController, animated: true)
+    }    
     
 }
 
