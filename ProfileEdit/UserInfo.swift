@@ -8,9 +8,10 @@
 import Foundation
 
 
-struct UserInfo {
+struct User: Codable {
     let name: String
-    let phoneNumber: Int
+    let job: String
+    let phoneNumber: String
     let email: String
-    let website: String
+    var website: String?
 }

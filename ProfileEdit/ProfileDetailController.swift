@@ -8,7 +8,8 @@
 import UIKit
 import PhotosUI
 
-class ProfileDetailController: UIViewController {
+class ProfileDetailController: UIViewController, ProfileEditControllerDelegate {
+    
     
     @IBOutlet weak var profilePicBackground: UIView!
     @IBOutlet weak var profilePicImageView: UIImageView!
@@ -20,12 +21,20 @@ class ProfileDetailController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var websiteLabel: UILabel!
     
-
+    var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureProfilePic()
         configureUserInfo()
+        loadUser()
+        print(user?.website)
+    }
+    
+    @IBAction func unwind(_ segue: UIStoryboardSegue) {
+        guard let source = segue.source as? ProfileEditController else { return }
+        source.delegate = self
+
     }
     
     func configureProfilePic() {
@@ -33,6 +42,15 @@ class ProfileDetailController: UIViewController {
         profilePicImageView.layer.cornerRadius = profilePicImageView.layer.frame.width / 2
         userInfoBackgroundView.addTopRoundedCornerToView(targetView: userInfoBackgroundView, desiredCurve: 4.0)
         editProfilePicButton.layer.cornerRadius = editProfilePicButton.layer.frame.width / 2
+    }
+    
+    func loadUser() {
+        guard let user = user else { return }
+            nameLabel.text = user.name
+            positionLabel.text = user.job
+            phoneNumberLabel.text = user.phoneNumber
+            emailLabel.text = user.email
+            websiteLabel.text = user.website
     }
     
     func configureUserInfo() {
@@ -63,20 +81,11 @@ class ProfileDetailController: UIViewController {
         dismiss(animated: true)
     }
     
+    func updateInfo(for user: User) {
+        self.user = user
+    }
     
-    @IBAction func editButtonTapped(_ sender: UIButton) {
-        // Create your child view controller
-        lazy var detailController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProfileEditController")
-        if let sheet = detailController.sheetPresentationController {
-            sheet.detents = [.medium(), .large()]
-            sheet.largestUndimmedDetentIdentifier = .medium
-            sheet.prefersScrollingExpandsWhenScrolledToEdge = false
-            sheet.prefersEdgeAttachedInCompactHeight = true
-            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
-        }
-        present(detailController, animated: true)
-    }    
-    
+
 }
 
 extension UIView {
