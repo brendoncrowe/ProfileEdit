@@ -8,7 +8,7 @@
 import UIKit
 import PhotosUI
 
-class ProfileDetailController: UIViewController, ProfileEditControllerDelegate {
+class ProfileDetailController: UIViewController {
     
     
     @IBOutlet weak var profilePicBackground: UIView!
@@ -28,14 +28,8 @@ class ProfileDetailController: UIViewController, ProfileEditControllerDelegate {
         configureProfilePic()
         configureUserInfo()
         loadUser()
-        print(user?.website)
     }
     
-    @IBAction func unwind(_ segue: UIStoryboardSegue) {
-        guard let source = segue.source as? ProfileEditController else { return }
-        source.delegate = self
-
-    }
     
     func configureProfilePic() {
         profilePicBackground.layer.cornerRadius = profilePicBackground.layer.frame.width / 2
@@ -46,11 +40,23 @@ class ProfileDetailController: UIViewController, ProfileEditControllerDelegate {
     
     func loadUser() {
         guard let user = user else { return }
-            nameLabel.text = user.name
-            positionLabel.text = user.job
-            phoneNumberLabel.text = user.phoneNumber
-            emailLabel.text = user.email
+        nameLabel.text = user.name
+        positionLabel.text = user.job
+        phoneNumberLabel.text = user.phoneNumber
+        emailLabel.text = user.email
+        if user.website.isEmpty{
+            websiteLabel.text = "not available"
+        } else {
             websiteLabel.text = user.website
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let navController = segue.destination as? UINavigationController,
+              // TODO: pass user to edit controller
+              let _ = navController.viewControllers.first as? ProfileEditController else {
+            fatalError("could not segue to ProfileEditController")
+        }
     }
     
     func configureUserInfo() {
@@ -85,7 +91,7 @@ class ProfileDetailController: UIViewController, ProfileEditControllerDelegate {
         self.user = user
     }
     
-
+    
 }
 
 extension UIView {
