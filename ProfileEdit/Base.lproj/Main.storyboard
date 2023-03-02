@@ -13,7 +13,7 @@
         <!--Users-->
         <scene sceneID="gge-4O-vCx">
             <objects>
-                <viewController id="FLS-Bv-HkE" customClass="UsersViewController" customModule="ProfileEdit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="FLS-Bv-HkE" customClass="RandomUsersViewController" customModule="ProfileEdit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qBW-6S-DFO">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

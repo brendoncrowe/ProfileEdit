@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UsersViewController: UIViewController {
+class RandomUsersViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -21,7 +21,7 @@ class UsersViewController: UIViewController {
     
 }
 
-extension UsersViewController: UICollectionViewDataSource {
+extension RandomUsersViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return users.count
@@ -36,7 +36,7 @@ extension UsersViewController: UICollectionViewDataSource {
     
 }
 
-extension UsersViewController: UICollectionViewDelegateFlowLayout {
+extension RandomUsersViewController: UICollectionViewDelegateFlowLayout {
     
     
     
