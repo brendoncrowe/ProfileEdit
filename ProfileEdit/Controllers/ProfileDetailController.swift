@@ -16,10 +16,10 @@ class ProfileDetailController: UIViewController {
     @IBOutlet weak var userInfoBackgroundView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var positionLabel: UILabel!
-    @IBOutlet weak var editProfilePicButton: UIButton!
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var websiteLabel: UILabel!
+    @IBOutlet weak var editInfoButton: UIButton!
     
     var user: PhoneUser?
     
@@ -28,17 +28,17 @@ class ProfileDetailController: UIViewController {
         configureProfilePic()
         configureUserInfo()
         loadUser()
+        editInfoButton.addTarget(self, action: #selector(presentEditController), for: .touchUpInside)
     }
     
     
-    func configureProfilePic() {
+    private func configureProfilePic() {
         profilePicBackground.layer.cornerRadius = profilePicBackground.layer.frame.width / 2
         profilePicImageView.layer.cornerRadius = profilePicImageView.layer.frame.width / 2
         userInfoBackgroundView.addTopRoundedCornerToView(targetView: userInfoBackgroundView, desiredCurve: 4.0)
-        editProfilePicButton.layer.cornerRadius = editProfilePicButton.layer.frame.width / 2
     }
     
-    func loadUser() {
+    private func loadUser() {
         guard let user = user else { return }
         nameLabel.text = user.name
         positionLabel.text = user.job
@@ -51,15 +51,21 @@ class ProfileDetailController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let navController = segue.destination as? UINavigationController,
-              // TODO: pass user to edit controller
-              let _ = navController.viewControllers.first as? ProfileEditController else {
-            fatalError("could not segue to ProfileEditController")
+    @objc private func presentEditController() {
+        guard let randomUserDetailController = storyboard?.instantiateViewController(withIdentifier: "ProfileEditController")
+                as? ProfileEditController else {
+            fatalError("could not load ProfileEditController")
         }
+        if let sheet = randomUserDetailController.sheetPresentationController {
+            sheet.detents = [ .large()]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 24
+        }
+        present(randomUserDetailController, animated: true)
     }
     
-    func configureUserInfo() {
+    
+    private func configureUserInfo() {
         let name = "Brendon Crowe"
         let position = "Programmer".uppercased()
         nameLabel.text = name
@@ -76,22 +82,9 @@ class ProfileDetailController: UIViewController {
         present(controller, animated: true)
     }
     
-    
-    
-    @IBAction func editButtonPressed(_ sender: UIButton) {
-        changeProfileImage()
-    }
-    
-    
-    @IBAction func dimissView(_ segue: UIStoryboardSegue) {
-        dismiss(animated: true)
-    }
-    
     func updateInfo(for user: PhoneUser) {
         self.user = user
     }
-    
-    
 }
 
 extension UIView {

@@ -9,7 +9,6 @@ import UIKit
 
 class RandomUserDetailController: UIViewController {
     
-    
     @IBOutlet weak var imageBackground: UIView!
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -38,9 +37,7 @@ class RandomUserDetailController: UIViewController {
         imageBackground.addTopRoundedCornerToView(targetView: userInfoBackgroundView, desiredCurve: 4.0)
 
     }
-    
 
-    
     func loadUser() {
         if let user = user {
             userNameLabel.text = user.name.first.capitalized + " " + user.name.last.capitalized
