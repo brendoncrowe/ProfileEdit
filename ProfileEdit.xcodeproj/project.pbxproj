@@ -12,13 +12,16 @@
 		4015F98E29B0012300D3DE83 /* ProfileEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F98D29B0012300D3DE83 /* ProfileEditController.swift */; };
 		4015F99029B02C9100D3DE83 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F98F29B02C9100D3DE83 /* NetworkHelper.swift */; };
 		4015F99229B02EFF00D3DE83 /* RandomUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F99129B02EFF00D3DE83 /* RandomUser.swift */; };
+		4015F99529B10E9800D3DE83 /* RandomUserAPIClient .swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F99429B10E9800D3DE83 /* RandomUserAPIClient .swift */; };
+		4015F99729B149F000D3DE83 /* ImageFromAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F99629B149F000D3DE83 /* ImageFromAPIHelper.swift */; };
+		4015F99A29B1719100D3DE83 /* RandomUserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F99929B1719100D3DE83 /* RandomUserDetailController.swift */; };
 		4097371529971DF100C67FF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4097371429971DF100C67FF5 /* AppDelegate.swift */; };
 		4097371729971DF100C67FF5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4097371629971DF100C67FF5 /* SceneDelegate.swift */; };
 		4097371929971DF100C67FF5 /* ProfileDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4097371829971DF100C67FF5 /* ProfileDetailController.swift */; };
 		4097371C29971DF100C67FF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4097371A29971DF100C67FF5 /* Main.storyboard */; };
 		4097371E29971DF200C67FF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4097371D29971DF200C67FF5 /* Assets.xcassets */; };
 		4097372129971DF200C67FF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4097371F29971DF200C67FF5 /* LaunchScreen.storyboard */; };
-		4097372929971E0200C67FF5 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4097372829971E0200C67FF5 /* UserInfo.swift */; };
+		4097372929971E0200C67FF5 /* PhoneUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4097372829971E0200C67FF5 /* PhoneUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +30,9 @@
 		4015F98D29B0012300D3DE83 /* ProfileEditController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditController.swift; sourceTree = "<group>"; };
 		4015F98F29B02C9100D3DE83 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		4015F99129B02EFF00D3DE83 /* RandomUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUser.swift; sourceTree = "<group>"; };
+		4015F99429B10E9800D3DE83 /* RandomUserAPIClient .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RandomUserAPIClient .swift"; sourceTree = "<group>"; };
+		4015F99629B149F000D3DE83 /* ImageFromAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFromAPIHelper.swift; sourceTree = "<group>"; };
+		4015F99929B1719100D3DE83 /* RandomUserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUserDetailController.swift; sourceTree = "<group>"; };
 		4097371129971DF100C67FF5 /* ProfileEdit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProfileEdit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4097371429971DF100C67FF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4097371629971DF100C67FF5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +41,7 @@
 		4097371D29971DF200C67FF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4097372029971DF200C67FF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4097372229971DF200C67FF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4097372829971E0200C67FF5 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		4097372829971E0200C67FF5 /* PhoneUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +55,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4015F99329B10E8300D3DE83 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4015F98929AFFB0200D3DE83 /* RandomUsersViewController.swift */,
+				4015F99929B1719100D3DE83 /* RandomUserDetailController.swift */,
+				4097371829971DF100C67FF5 /* ProfileDetailController.swift */,
+				4015F98D29B0012300D3DE83 /* ProfileEditController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4015F99829B156BE00D3DE83 /* Network Services */ = {
+			isa = PBXGroup;
+			children = (
+				4015F98F29B02C9100D3DE83 /* NetworkHelper.swift */,
+				4015F99429B10E9800D3DE83 /* RandomUserAPIClient .swift */,
+				4015F99629B149F000D3DE83 /* ImageFromAPIHelper.swift */,
+			);
+			path = "Network Services";
+			sourceTree = "<group>";
+		};
 		4097370829971DF100C67FF5 = {
 			isa = PBXGroup;
 			children = (
@@ -68,12 +95,10 @@
 		4097371329971DF100C67FF5 /* ProfileEdit */ = {
 			isa = PBXGroup;
 			children = (
-				4015F98929AFFB0200D3DE83 /* RandomUsersViewController.swift */,
-				4097371829971DF100C67FF5 /* ProfileDetailController.swift */,
-				4015F98D29B0012300D3DE83 /* ProfileEditController.swift */,
-				4015F98F29B02C9100D3DE83 /* NetworkHelper.swift */,
+				4015F99329B10E8300D3DE83 /* Controllers */,
+				4015F99829B156BE00D3DE83 /* Network Services */,
 				4015F98B29AFFF2700D3DE83 /* UserCell.swift */,
-				4097372829971E0200C67FF5 /* UserInfo.swift */,
+				4097372829971E0200C67FF5 /* PhoneUser.swift */,
 				4015F99129B02EFF00D3DE83 /* RandomUser.swift */,
 				4097371429971DF100C67FF5 /* AppDelegate.swift */,
 				4097371629971DF100C67FF5 /* SceneDelegate.swift */,
@@ -156,12 +181,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4015F99529B10E9800D3DE83 /* RandomUserAPIClient .swift in Sources */,
 				4015F99029B02C9100D3DE83 /* NetworkHelper.swift in Sources */,
-				4097372929971E0200C67FF5 /* UserInfo.swift in Sources */,
+				4097372929971E0200C67FF5 /* PhoneUser.swift in Sources */,
+				4015F99A29B1719100D3DE83 /* RandomUserDetailController.swift in Sources */,
 				4097371929971DF100C67FF5 /* ProfileDetailController.swift in Sources */,
 				4015F98C29AFFF2700D3DE83 /* UserCell.swift in Sources */,
 				4015F98A29AFFB0200D3DE83 /* RandomUsersViewController.swift in Sources */,
 				4015F99229B02EFF00D3DE83 /* RandomUser.swift in Sources */,
+				4015F99729B149F000D3DE83 /* ImageFromAPIHelper.swift in Sources */,
 				4097371529971DF100C67FF5 /* AppDelegate.swift in Sources */,
 				4097371729971DF100C67FF5 /* SceneDelegate.swift in Sources */,
 				4015F98E29B0012300D3DE83 /* ProfileEditController.swift in Sources */,

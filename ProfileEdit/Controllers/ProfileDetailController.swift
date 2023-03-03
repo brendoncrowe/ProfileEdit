@@ -21,7 +21,7 @@ class ProfileDetailController: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var websiteLabel: UILabel!
     
-    var user: User?
+    var user: PhoneUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +87,7 @@ class ProfileDetailController: UIViewController {
         dismiss(animated: true)
     }
     
-    func updateInfo(for user: User) {
+    func updateInfo(for user: PhoneUser) {
         self.user = user
     }
     

@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileEditController: UIViewController {
     
-    var userInfo: User?
+    var userInfo: PhoneUser?
 
     override func viewDidLoad() {
         super.viewDidLoad()
