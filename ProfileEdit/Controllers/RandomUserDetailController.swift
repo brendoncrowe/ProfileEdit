@@ -36,6 +36,7 @@ class RandomUserDetailController: UIViewController {
         imageBackground.layer.cornerRadius = imageBackground.layer.frame.width / 2
         userProfileImage.layer.cornerRadius = userProfileImage.layer.frame.width / 2
         imageBackground.addTopRoundedCornerToView(targetView: userInfoBackgroundView, desiredCurve: 4.0)
+
     }
     
 

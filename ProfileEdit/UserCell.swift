@@ -25,7 +25,6 @@ class UserCell: UICollectionViewCell {
     func configureCell(for user: User) {
         let firstName = user.name.first
         let lastName = user.name.last
-        let firstNameCharacter = firstName.first
         let lastNameCharacter = lastName.first
         userNameLabel.text = "\(firstName.capitalized) \(lastNameCharacter!)."
 

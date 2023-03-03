@@ -20,7 +20,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pAl-cp-bwU">
                                 <rect key="frame" x="0.0" y="103" width="393" height="749"/>
-                                <color key="backgroundColor" red="0.89803922179999995" green="0.90196073060000004" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CGp-Bj-vPd">
                                     <size key="itemSize" width="240" height="314"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -372,7 +372,7 @@
                                         <rect key="frame" x="10" y="12" width="200" height="196.66666666666666"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.8980392157" green="0.90196078430000004" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="CyK-87-Du6" firstAttribute="width" secondItem="unL-rG-EKy" secondAttribute="width" multiplier="0.909091" id="3wb-dn-zL7"/>
                                     <constraint firstItem="CyK-87-Du6" firstAttribute="centerX" secondItem="unL-rG-EKy" secondAttribute="centerX" id="6Cy-bl-LX1"/>
@@ -503,6 +503,7 @@
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="tkf-gs-3ML">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="smt-ww-ttQ">
+                            <color key="tintColor" red="0.89803922179999995" green="0.90196073060000004" blue="0.91764706370000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <action selector="dissMissRandomUser:" destination="0ut-gD-98u" id="v7m-TD-fTn"/>
                             </connections>
