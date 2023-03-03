@@ -10,7 +10,6 @@ import PhotosUI
 
 class ProfileDetailController: UIViewController {
     
-    
     @IBOutlet weak var profilePicBackground: UIView!
     @IBOutlet weak var profilePicImageView: UIImageView!
     @IBOutlet weak var userInfoBackgroundView: UIView!
@@ -30,7 +29,6 @@ class ProfileDetailController: UIViewController {
         loadUser()
         editInfoButton.addTarget(self, action: #selector(presentEditController), for: .touchUpInside)
     }
-    
     
     private func configureProfilePic() {
         profilePicBackground.layer.cornerRadius = profilePicBackground.layer.frame.width / 2
@@ -64,7 +62,6 @@ class ProfileDetailController: UIViewController {
         present(randomUserDetailController, animated: true)
     }
     
-    
     private func configureUserInfo() {
         let name = "Brendon Crowe"
         let position = "Programmer".uppercased()
@@ -90,7 +87,7 @@ class ProfileDetailController: UIViewController {
 extension UIView {
     
     func addTopRoundedCornerToView(targetView: UIView?, desiredCurve: CGFloat?) {
-        let offset:CGFloat =  targetView!.frame.width/desiredCurve!
+        let offset: CGFloat =  targetView!.frame.width/desiredCurve!
         let bounds: CGRect = targetView!.bounds
         
         let rectBounds: CGRect = CGRectMake(bounds.origin.x, bounds.origin.y + bounds.size.height / 2, bounds.size.width, bounds.size.height / 2)
