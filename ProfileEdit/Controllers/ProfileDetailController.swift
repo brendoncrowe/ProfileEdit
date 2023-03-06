@@ -8,7 +8,7 @@
 import UIKit
 import PhotosUI
 
-class ProfileDetailController: UIViewController {
+class ProfileDetailController: UIViewController, ProfileEditControllerDelegate {
     
     @IBOutlet weak var profilePicBackground: UIView!
     @IBOutlet weak var profilePicImageView: UIImageView!
@@ -25,15 +25,20 @@ class ProfileDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureProfilePic()
-        configureUserInfo()
         loadUser()
         editInfoButton.addTarget(self, action: #selector(presentEditController), for: .touchUpInside)
     }
+    
     
     private func configureProfilePic() {
         profilePicBackground.layer.cornerRadius = profilePicBackground.layer.frame.width / 2
         profilePicImageView.layer.cornerRadius = profilePicImageView.layer.frame.width / 2
         userInfoBackgroundView.addTopRoundedCornerToView(targetView: userInfoBackgroundView, desiredCurve: 4.0)
+    }
+    
+    func ProfileEditController(_ controller: ProfileEditController, didSaveUserInfo user: PhoneUser) {
+        self.user = user
+        loadUser()
     }
     
     private func loadUser() {
@@ -42,11 +47,15 @@ class ProfileDetailController: UIViewController {
         positionLabel.text = user.job
         phoneNumberLabel.text = user.phoneNumber
         emailLabel.text = user.email
-        if user.website.isEmpty{
-            websiteLabel.text = "not available"
-        } else {
-            websiteLabel.text = user.website
+        websiteLabel.text = user.website
+        print("info laoded")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailVC = segue.source as? ProfileEditController else {
+            fatalError("could not get ProfileEditController")
         }
+        detailVC.delegate = self
     }
     
     @objc private func presentEditController() {
@@ -60,27 +69,6 @@ class ProfileDetailController: UIViewController {
             sheet.preferredCornerRadius = 24
         }
         present(randomUserDetailController, animated: true)
-    }
-    
-    private func configureUserInfo() {
-        let name = "Brendon Crowe"
-        let position = "Programmer".uppercased()
-        nameLabel.text = name
-        positionLabel.text = position
-        
-    }
-    
-    func changeProfileImage() {
-        var phpPickerConfig = PHPickerConfiguration()
-        phpPickerConfig.filter = .images
-        phpPickerConfig.selectionLimit = 1
-        let controller = PHPickerViewController(configuration: phpPickerConfig)
-        controller.delegate = self
-        present(controller, animated: true)
-    }
-    
-    func updateInfo(for user: PhoneUser) {
-        self.user = user
     }
 }
 
@@ -104,25 +92,5 @@ extension UIView {
         
         // Set the newly created shape layer as the mask for the view's layer
         targetView!.layer.mask = maskLayer
-    }
-}
-
-extension ProfileDetailController: PHPickerViewControllerDelegate {
-    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        if !results.isEmpty {
-            let result = results.first!
-            let itemProvider = result.itemProvider
-            if itemProvider.canLoadObject(ofClass: UIImage.self) {
-                itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                    guard let image = image as? UIImage else {
-                        return
-                    }
-                    DispatchQueue.main.async {
-                        self?.profilePicImageView.image = image
-                    }
-                }
-            }
-        }
-        dismiss(animated: true)
     }
 }

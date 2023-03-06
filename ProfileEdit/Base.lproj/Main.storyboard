@@ -341,6 +341,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J02-CA-nPx">
+                                <rect key="frame" x="175" y="683" width="43" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonTapped:" destination="44o-Zw-UHn" eventType="touchUpInside" id="YcQ-ty-f4E"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="eW2-l8-6S7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -354,6 +363,7 @@
                             <constraint firstItem="NB8-VB-yEX" firstAttribute="bottom" secondItem="Roa-5m-MDL" secondAttribute="bottom" constant="60" id="Jjx-0x-0QX"/>
                             <constraint firstItem="IKa-dD-T54" firstAttribute="bottom" secondItem="vzQ-nk-uHy" secondAttribute="bottom" constant="60" id="PRf-kn-HfM"/>
                             <constraint firstItem="eW2-l8-6S7" firstAttribute="trailing" secondItem="Yyj-m9-H8J" secondAttribute="trailing" constant="80" id="PxN-tL-SUF"/>
+                            <constraint firstItem="J02-CA-nPx" firstAttribute="centerX" secondItem="xEM-6b-lH2" secondAttribute="centerX" id="TXW-6B-zNS"/>
                             <constraint firstItem="Bl9-pd-for" firstAttribute="centerX" secondItem="xEM-6b-lH2" secondAttribute="centerX" id="TYk-Tv-NtR"/>
                             <constraint firstItem="Yyj-m9-H8J" firstAttribute="centerY" secondItem="NB8-VB-yEX" secondAttribute="centerY" id="V9U-gd-tKT"/>
                             <constraint firstItem="eW2-l8-6S7" firstAttribute="trailing" secondItem="vzQ-nk-uHy" secondAttribute="trailing" constant="80" id="YtT-MQ-QLg"/>
@@ -361,6 +371,7 @@
                             <constraint firstItem="vzQ-nk-uHy" firstAttribute="centerY" secondItem="4Ui-pr-C5Q" secondAttribute="centerY" id="doN-Nk-XWR"/>
                             <constraint firstItem="4Ui-pr-C5Q" firstAttribute="leading" secondItem="eW2-l8-6S7" secondAttribute="leading" constant="60" id="gUN-wW-BaI"/>
                             <constraint firstItem="4ss-pp-3Wg" firstAttribute="leading" secondItem="eW2-l8-6S7" secondAttribute="leading" constant="8" id="hsf-Xk-iPX"/>
+                            <constraint firstItem="J02-CA-nPx" firstAttribute="top" secondItem="Yyj-m9-H8J" secondAttribute="bottom" constant="60" id="hxg-AA-Cno"/>
                             <constraint firstItem="Roa-5m-MDL" firstAttribute="centerY" secondItem="XVe-e9-PKA" secondAttribute="centerY" id="jdH-J0-oRa"/>
                             <constraint firstItem="Roa-5m-MDL" firstAttribute="leading" secondItem="XVe-e9-PKA" secondAttribute="trailing" constant="8" id="lbV-8p-CJU"/>
                             <constraint firstItem="ERe-NB-DZT" firstAttribute="centerY" secondItem="IKa-dD-T54" secondAttribute="centerY" id="nD1-Ku-7nW"/>
@@ -387,6 +398,11 @@
                     <connections>
                         <outlet property="profileImageBackground" destination="Bl9-pd-for" id="UTZ-qX-VYn"/>
                         <outlet property="profileImageButton" destination="FRU-B7-mRN" id="DU3-xi-MsB"/>
+                        <outlet property="saveButton" destination="J02-CA-nPx" id="h5S-xM-Rhe"/>
+                        <outlet property="userEmailTextField" destination="Yyj-m9-H8J" id="c1t-zl-Wn0"/>
+                        <outlet property="userJobTextField" destination="ERe-NB-DZT" id="iIH-Ho-xTh"/>
+                        <outlet property="userNameTextField" destination="vzQ-nk-uHy" id="oCT-h1-UH0"/>
+                        <outlet property="userPhoneTextField" destination="Roa-5m-MDL" id="AJS-wu-MFX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLh-IY-3IV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

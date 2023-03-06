@@ -23,6 +23,11 @@ class RandomUsersViewController: UIViewController {
         loadData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
+    
     private func configureCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
