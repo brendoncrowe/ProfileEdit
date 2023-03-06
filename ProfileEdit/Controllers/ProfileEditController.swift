@@ -23,7 +23,7 @@ class ProfileEditController: UIViewController {
     @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
     
-    var userInfo: PhoneUser?
+    var user: PhoneUser?
     var userImage: UIImage?
     weak var delegate: ProfileEditControllerDelegate?
     var saveButtonIsEnabled = false
@@ -34,6 +34,14 @@ class ProfileEditController: UIViewController {
         configureImageButton()
         saveButton.isEnabled = saveButtonIsEnabled
         profileImageButton.addTarget(self, action: #selector(changeProfileImage), for: .touchUpInside)
+        if user != nil {
+            userNameTextField.text = user?.name
+            userJobTextField.text = user?.job
+            userPhoneTextField.text = user?.phoneNumber
+            userEmailTextField.text = user?.email
+            userImage = UIImage(data: user!.photo)
+            profileImageButton.setImage(UIImage(data: user!.photo), for: .normal)
+        }
     }
     
     private func configTextFieldDelegates() {
@@ -48,6 +56,9 @@ class ProfileEditController: UIViewController {
         phpPickerConfig.filter = .images
         phpPickerConfig.selectionLimit = 1
         let controller = PHPickerViewController(configuration: phpPickerConfig)
+        if let sheet = controller.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
         controller.delegate = self
         present(controller, animated: true)
     }
@@ -61,11 +72,10 @@ class ProfileEditController: UIViewController {
             print("image is nil")
             return
         }
-        let name = userNameTextField.text ?? ""
-        print(name)
-        let job = userJobTextField.text ?? ""
-        let phoneNumber = userPhoneTextField.text ?? ""
-        let email = userEmailTextField.text ?? ""
+        let name = userNameTextField.text ?? "No name"
+        let job = userJobTextField.text ?? "No job available"
+        let phoneNumber = userPhoneTextField.text ?? "No phone #"
+        let email = userEmailTextField.text ?? "No email"
         
         // the below code is formatting the image into data needed for persistence
         let size = UIScreen.main.bounds.size
@@ -76,27 +86,25 @@ class ProfileEditController: UIViewController {
             return
         }
         let photo = imageData
-        
-        userInfo = PhoneUser(name: name, photo: photo, job: job, phoneNumber: phoneNumber, email: email)
-        delegate?.ProfileEditController(self, didSaveUserInfo: userInfo!)
+        user = PhoneUser(name: name, photo: photo, job: job, phoneNumber: phoneNumber, email: email)
+        PhoneUser.saveUserInfo(user!)        
+        delegate?.ProfileEditController(self, didSaveUserInfo: user!)
     }
-
-
-@IBAction func saveButtonTapped(_ sender: UIButton) {
-    presentSaveAlert()
-    saveUserInfo()
     
-    // TODO: Save info here
-}
-
-private func presentSaveAlert() {
-    let alertController = UIAlertController(title: "Saved", message: "Your info has been saved", preferredStyle: .alert)
-    alertController.addAction((UIAlertAction(title: "OK", style: .default)))
-    present(alertController, animated: true)
-}
+    @IBAction func saveButtonTapped(_ sender: UIButton) {
+        presentSaveAlert()
+        saveUserInfo()
+    }
+    
+    private func presentSaveAlert() {
+        let alertController = UIAlertController(title: "Saved", message: "Your info has been saved", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alertController, animated: true)
+    }
 }
 
 extension ProfileEditController: PHPickerViewControllerDelegate {
+    
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         if !results.isEmpty {
@@ -115,19 +123,20 @@ extension ProfileEditController: PHPickerViewControllerDelegate {
                     }
                     DispatchQueue.main.async {
                         self?.profileImageButton.setImage(image, for: .normal)
+                        self?.saveButton.isEnabled = true
+                        self?.userImage = image
                     }
-                    self?.userImage = image
                 }
             }
         }
-        dismiss(animated: true)
+        picker.dismiss(animated: true)
     }
 }
 
 extension ProfileEditController: UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        guard let neededText = userNameTextField.text else {
+        guard let neededText = textField.text else {
             return
         }
         guard !neededText.isEmpty else {

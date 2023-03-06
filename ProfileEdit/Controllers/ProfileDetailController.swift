@@ -29,7 +29,6 @@ class ProfileDetailController: UIViewController, ProfileEditControllerDelegate {
         editInfoButton.addTarget(self, action: #selector(presentEditController), for: .touchUpInside)
     }
     
-    
     private func configureProfilePic() {
         profilePicBackground.layer.cornerRadius = profilePicBackground.layer.frame.width / 2
         profilePicImageView.layer.cornerRadius = profilePicImageView.layer.frame.width / 2
@@ -42,33 +41,31 @@ class ProfileDetailController: UIViewController, ProfileEditControllerDelegate {
     }
     
     private func loadUser() {
-        guard let user = user else { return }
+        guard let user = PhoneUser.loadUserInfo() else { return }
+        profilePicImageView.image = UIImage(data: user.photo)
         nameLabel.text = user.name
         positionLabel.text = user.job
         phoneNumberLabel.text = user.phoneNumber
         emailLabel.text = user.email
         websiteLabel.text = user.website
-        print("info laoded")
+        self.user = user
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let detailVC = segue.source as? ProfileEditController else {
-            fatalError("could not get ProfileEditController")
-        }
-        detailVC.delegate = self
-    }
     
     @objc private func presentEditController() {
-        guard let randomUserDetailController = storyboard?.instantiateViewController(withIdentifier: "ProfileEditController")
+        guard let phoneUserDetailController = storyboard?.instantiateViewController(withIdentifier: "ProfileEditController")
                 as? ProfileEditController else {
             fatalError("could not load ProfileEditController")
         }
-        if let sheet = randomUserDetailController.sheetPresentationController {
+        if let sheet = phoneUserDetailController.sheetPresentationController {
             sheet.detents = [ .large()]
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 24
         }
-        present(randomUserDetailController, animated: true)
+        phoneUserDetailController.user = user
+        phoneUserDetailController.delegate = self
+        
+        present(phoneUserDetailController, animated: true)
     }
 }
 
