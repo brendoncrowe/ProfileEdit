@@ -55,6 +55,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4007930429B6687A007E495D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4015F98B29AFFF2700D3DE83 /* UserCell.swift */,
+				4097372829971E0200C67FF5 /* PhoneUser.swift */,
+				4015F99129B02EFF00D3DE83 /* RandomUser.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4007930529B66883007E495D /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				4097371429971DF100C67FF5 /* AppDelegate.swift */,
+				4097371629971DF100C67FF5 /* SceneDelegate.swift */,
+				4097371A29971DF100C67FF5 /* Main.storyboard */,
+				4097371D29971DF200C67FF5 /* Assets.xcassets */,
+				4097371F29971DF200C67FF5 /* LaunchScreen.storyboard */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
 		4015F99329B10E8300D3DE83 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,14 +119,8 @@
 			children = (
 				4015F99329B10E8300D3DE83 /* Controllers */,
 				4015F99829B156BE00D3DE83 /* Network Services */,
-				4015F98B29AFFF2700D3DE83 /* UserCell.swift */,
-				4097372829971E0200C67FF5 /* PhoneUser.swift */,
-				4015F99129B02EFF00D3DE83 /* RandomUser.swift */,
-				4097371429971DF100C67FF5 /* AppDelegate.swift */,
-				4097371629971DF100C67FF5 /* SceneDelegate.swift */,
-				4097371A29971DF100C67FF5 /* Main.storyboard */,
-				4097371D29971DF200C67FF5 /* Assets.xcassets */,
-				4097371F29971DF200C67FF5 /* LaunchScreen.storyboard */,
+				4007930429B6687A007E495D /* Models */,
+				4007930529B66883007E495D /* Supporting */,
 				4097372229971DF200C67FF5 /* Info.plist */,
 			);
 			path = ProfileEdit;
